@@ -1,6 +1,7 @@
 import express from 'express'
 import multer from 'multer'
 import mongoose from 'mongoose';
+import fs from 'fs'
 import cors from 'cors'
 import { registerValidation, loginValidation, postCreateValidation, commentCreateValidation, updateMeValidation } from './validations/validations.js'
 import { UserController, PostController, CommentController } from './controllers/index.js'
@@ -9,14 +10,16 @@ import { checkAuth, handleValidationErrors } from './utils/index.js'
 
 
 mongoose
-    .connect(
-        process.env.MONGODB_URI
-    ).then(() => console.log('db ok'))
+    .connect(process.env.MONGODB_URI)
+    .then(() => console.log('db ok'))
     .catch((err) => console.log('db err', err))
 
 const app = express();
 const storage = multer.diskStorage({
     destination: (_, __, cb) => {
+        if (!fs.existsSync('uploads')) {
+            fs.mkdirSync('uploads')
+        }
         cb(null, 'uploads')
     },
     filename: (_, file, cb) => {
@@ -58,7 +61,7 @@ app.post('/comments/:postId', checkAuth, commentCreateValidation, handleValidati
 app.delete('/comments/:postId/:commentId', checkAuth, CommentController.removeComment)
 app.patch('/personal/edit', checkAuth, updateMeValidation, handleValidationErrors, UserController.update)
 
- 
+
 app.listen(process.env.PORT || 4000, (err) => {
     if (err) {
         return console.log(err)
