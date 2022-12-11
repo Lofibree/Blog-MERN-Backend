@@ -58,7 +58,7 @@ app.post('/comments/:postId', checkAuth, commentCreateValidation, handleValidati
 app.delete('/comments/:postId/:commentId', checkAuth, CommentController.removeComment)
 app.patch('/personal/edit', checkAuth, updateMeValidation, handleValidationErrors, UserController.update)
 
-
+ 
 app.listen(process.env.PORT || 4000, (err) => {
     if (err) {
         return console.log(err)
