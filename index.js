@@ -10,7 +10,7 @@ import { checkAuth, handleValidationErrors } from './utils/index.js'
 
 mongoose
     .connect(
-        'mongodb+srv://lofi:wwwwww@cluster0.nyole5c.mongodb.net/blog?retryWrites=true&w=majority'
+        process.env.MONGODB_URI
     ).then(() => console.log('db ok'))
     .catch((err) => console.log('db err', err))
 
@@ -59,7 +59,7 @@ app.delete('/comments/:postId/:commentId', checkAuth, CommentController.removeCo
 app.patch('/personal/edit', checkAuth, updateMeValidation, handleValidationErrors, UserController.update)
 
 
-app.listen(4000, (err) => {
+app.listen(process.env.PORT || 4000, (err) => {
     if (err) {
         return console.log(err)
     }
