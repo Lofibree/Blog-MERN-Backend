@@ -2,7 +2,7 @@
 ## Fullstack project using MERN stack.
 
 ### Frontend: https://blog-mern-hu6s.vercel.app/
-### Backend: blog-mern-hu6s.vercel.app/
+### Backend: https://rich-puce-lizard-shoe.cyclic.app
 
 
 ## Technologies and tools used in this project
