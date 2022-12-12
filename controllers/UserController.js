@@ -61,7 +61,11 @@ export const login = async (req, res) => {
                 message: 'Неверный логин или пароль'
             })
         }
-
+        await UserModel.findOneAndUpdate({
+            email: req.body.email
+        }, {
+            $set: {isOnline: true}
+        })
         const token = jwt.sign({
             _id: user._id
         }, 'secret123',

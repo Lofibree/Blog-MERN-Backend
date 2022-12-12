@@ -14,6 +14,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    isOnline: Boolean,
     avatarUrl: String,
 }, {
     timestamps: true, // при создании любого пользователя mongodb должен прикреплять дату создания и обновления этой сущности

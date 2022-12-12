@@ -7,9 +7,6 @@ export const registerValidation = [
     body('avatarUrl', 'Неверная ссылка на автарку').optional().isURL(),
 ] 
 export const updateMeValidation = [
-    // body('email', 'Неверный формат почты').isEmail(),
-    // body('password', 'Пароль должен быть не менее 5 символов длиной').isLength({ min: 5 }),
-    // body('fullName', 'Укажите имя, длиной хотя бы 3 символа').isLength({ min: 3 }),
     body('avatarUrl', 'Неверная ссылка на автарку').optional().isURL(),
 ] 
 export const postCreateValidation = [
