@@ -119,3 +119,11 @@ export const update = async (req, res) => {
         success: true
     })
 }
+export const logout = async (req, res) => {
+    const email = req.body.params
+    await UserModel.findByIdAndUpdate({
+        email: email
+    }, {
+        $set: {isOnline: true}
+    })
+}

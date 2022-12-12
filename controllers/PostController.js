@@ -7,10 +7,8 @@ export const getNewPosts = async (req, res) => {
     try {
         const posts = await PostModel.find().populate('user').exec()
         const postsWOHash = posts.map(p => {
-            const {passwordHash, ...userData} = p.user
-            // const userWOHash = {...userData}
+            const {passwordHash, ...userData} = p._doc.user
             p.user = {...userData}
-            // const {userWOHash, ...postData} = p
             return p
         })
         const postsSorted = postsWOHash.sort((a, b) => {

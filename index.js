@@ -3,7 +3,7 @@ import multer from 'multer'
 import mongoose from 'mongoose';
 import fs from 'fs'
 import cors from 'cors'
-import { registerValidation, loginValidation, postCreateValidation, commentCreateValidation, updateMeValidation } from './validations/validations.js'
+import { registerValidation, loginValidation, logoutValidation, postCreateValidation, commentCreateValidation, updateMeValidation } from './validations/validations.js'
 import { UserController, PostController, CommentController } from './controllers/index.js'
 import { checkAuth, handleValidationErrors } from './utils/index.js'
 
@@ -34,6 +34,7 @@ app.use(cors())
 app.use('/uploads', express.static('uploads')) // объфсняем express что есть папка со статическими файлами
 
 app.post('/auth/login', loginValidation, handleValidationErrors, UserController.login)
+app.patch('/auth/logout', logoutValidation, handleValidationErrors, UserController.logout)
 app.post('/auth/register', registerValidation, handleValidationErrors, UserController.register)
 app.get('/auth/me', checkAuth, UserController.getMe)
 
