@@ -6,7 +6,14 @@ import CommentModel from '../models/comment.js'
 export const getNewPosts = async (req, res) => {
     try {
         const posts = await PostModel.find().populate('user').exec()
-        const postsSorted = posts.sort((a, b) => {
+        const postsWOHash = posts.map(p => {
+            const {passwordHash, ...userData} = p.user
+            // const userWOHash = {...userData}
+            p.user = {...userData}
+            // const {userWOHash, ...postData} = p
+            return p
+        })
+        const postsSorted = postsWOHash.sort((a, b) => {
             if (a.createdAt > b.createdAt) return 1 
             if (a.createdAt === b.createdAt) return 0 
             if (a.createdAt < b.createdAt) return -1
