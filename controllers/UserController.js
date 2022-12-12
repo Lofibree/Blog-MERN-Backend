@@ -124,6 +124,6 @@ export const logout = async (req, res) => {
     await UserModel.findByIdAndUpdate({
         email: email
     }, {
-        $set: {isOnline: true}
+        $set: {isOnline: false}
     })
 }
