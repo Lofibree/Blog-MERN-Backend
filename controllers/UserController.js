@@ -120,10 +120,15 @@ export const update = async (req, res) => {
     })
 }
 export const logout = async (req, res) => {
-    const email = req.body.params
-    await UserModel.findByIdAndUpdate({
+    const email = req.body.email
+    console.log(email)
+    await UserModel.findOneAndUpdate({
         email: email
     }, {
-        $set: {isOnline: false}
+        isOnline: false
     })
+    res.json({
+        success: true
+    })
+    // console.log(res)
 }

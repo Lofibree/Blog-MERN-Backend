@@ -36,7 +36,11 @@ const PostSchema = new mongoose.Schema({
     //     ref: 'Comment', // связь между таблицами 
     //     required: true,
     // }],
-    imageUrl: String,
+    image: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Image',
+        required: false
+    },
 }, {
     timestamps: true, // при создании любого пользователя mongodb должен прикреплять дату создания и обновления этой сущности
 })
