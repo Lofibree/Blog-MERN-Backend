@@ -1,6 +1,6 @@
-import PostModel from '../models/post.js'
-import CommentModel from '../models/comment.js'
-import post from '../models/post.js'
+import { PostModel } from '../conn.js'
+import { CommentModel } from '../conn.js'
+
 
 
 
