@@ -79,6 +79,7 @@ export const remove = async (req, res) => {
                     _id: docId._id
                 })
             })
+            console.log(doc.image)
             if (doc.image !== '') {
                 await deleteImage(doc.image)
             }
