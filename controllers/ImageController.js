@@ -73,7 +73,7 @@ export const uploadImg = async (req, res) => {
     return res.send(file.id)
 }
 
-const deleteImage = async (id) => {
+export const deleteImage = async (id) => {
     try {
         if (!id || id === 'undefined') return res.status(400).send('no image id')
         const _id = mongoose.Types.ObjectId(id)
