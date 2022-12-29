@@ -1,5 +1,6 @@
 import { PostModel } from '../conn.js'
 import { CommentModel } from '../conn.js'
+import { ImageController } from './index.js'
 
 
 
@@ -77,6 +78,11 @@ export const remove = async (req, res) => {
                     _id: docId._id
                 })
             })
+            if (doc.image !== '') {
+                await ImageController.findOneAndDelete({
+                    _id: doc.image
+                })
+            }
             res.json({ 
                 success: true
             })
